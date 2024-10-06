@@ -3,30 +3,28 @@ import { ICar } from '../Interfaces/car';
 import { CarService } from '../Services/car.service';
 
 @Component({
-  selector: 'app-popular-cars',
-  templateUrl: './popular-cars.component.html',
-  styleUrls: ['./popular-cars.component.scss']
+  selector: 'app-all-cars',
+  templateUrl: './all-cars.component.html',
+  styleUrls: ['./all-cars.component.scss']
 })
-export class PopularCarsComponent implements OnInit {
-
+export class AllCarsComponent implements OnInit {
   private carService: CarService;
-  searchQuery: string = '';
   cars!: ICar[];
 
 
-  constructor(_carService: CarService) {
+  constructor(private _carService: CarService) {
     this.carService = _carService;
   }
 
   
 
   ngOnInit(): void {
-    this.getPopularCars();
+    this.getAllCars();
   }
 
-  private getPopularCars(): void {
+  private getAllCars(): void {
     
-    this.carService.getPopularCars(4).subscribe(
+    this.carService.getAllCars().subscribe(
       (response: ICar[]) => {
         this.cars = response;
       },
@@ -34,8 +32,5 @@ export class PopularCarsComponent implements OnInit {
         console.error('Error fetching cars:', error);
       }
     );
-  }
-
-  onSearch() {
   }
 }
