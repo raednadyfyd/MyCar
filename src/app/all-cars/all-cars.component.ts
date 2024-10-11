@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ICar } from '../Interfaces/car';
+import { Car, GenericResponse } from '../Interfaces/generic-response';
 import { CarService } from '../Services/car.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { CarService } from '../Services/car.service';
 })
 export class AllCarsComponent implements OnInit {
   private carService: CarService;
-  cars!: ICar[];
+  cars!: Car[];
 
 
   constructor(private _carService: CarService) {
@@ -25,8 +25,8 @@ export class AllCarsComponent implements OnInit {
   private getAllCars(): void {
     
     this.carService.getAllCars().subscribe(
-      (response: ICar[]) => {
-        this.cars = response;
+      (response: GenericResponse<Car>): void => {
+        this.cars = response.result;
       },
       (error) => {
         console.error('Error fetching cars:', error);

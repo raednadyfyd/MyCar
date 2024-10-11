@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ICar } from '../Interfaces/car';
+import { Car } from '../Interfaces/generic-response';
 
 @Component({
   selector: 'app-car',
@@ -7,5 +7,5 @@ import { ICar } from '../Interfaces/car';
   styleUrls: ['./car.component.scss']
 })
 export class CarComponent {
-@Input() _Car!:ICar;
+@Input() car!:Car;
 }
